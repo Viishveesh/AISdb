@@ -189,8 +189,8 @@ jobs:
       - name: Setup PostgreSQL 17
         uses: ikalnytskyi/action-setup-postgres@v7
         with:
-          username: ${{ env.POSTGRES_USER }}
-          password:  ${{ env.POSTGRES_PASSWORD }}
+          username: ${{ secrets.PGUSER }}
+          password:  ${{ secrets.PGPASS }}
           database: postgres
           postgres-version: "17"
           ssl: false
