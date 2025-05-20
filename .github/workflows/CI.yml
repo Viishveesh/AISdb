@@ -185,6 +185,18 @@ jobs:
           cargo install --locked wasm-bindgen-cli --verbose
           cargo install --locked wasm-opt --verbose
           wasm-pack --version
+
+      - name: Print env vars and secrets for debugging
+        run: |
+          echo "POSTGRES_USER: $POSTGRES_USER"
+          echo "POSTGRES_PASSWORD: $POSTGRES_PASSWORD"
+          echo "PGPASSWORD: $PGPASSWORD"
+          echo "ENV LIST:"
+          env | sort
+        env:
+          POSTGRES_USER: ${{ secrets.PGUSER }}
+          POSTGRES_PASSWORD: ${{ secrets.PGPASS }}
+          PGPASSWORD: ${{ secrets.PGPASS }}
           
       - name: Setup PostgreSQL 17
         uses: ikalnytskyi/action-setup-postgres@v7
